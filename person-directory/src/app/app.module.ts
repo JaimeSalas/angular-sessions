@@ -11,6 +11,7 @@ import { LoggerService } from './services/logger.service';
 import { NewLoggerService } from './services/new-logger.service';
 import { WriterService } from './services/writer.service';
 import { FemaleComponent } from './female.component';
+import { FemaleService } from './services/female.service';
 
 // const simpleLogger = {
 //   log(msg: string) {
@@ -45,6 +46,7 @@ const loggerFactory = (writer: WriterService) => {
     // LoggerService
     WriterService,
     { provide: LoggerService, useFactory: loggerFactory, deps: [WriterService] },
+    FemaleService
   ], // new PersonService()
   bootstrap: [AppComponent],
 })

@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <h2>App Component</h2>
     <app-person></app-person>    
+    <app-female></app-female>
   `,
   styles: [``]
 })

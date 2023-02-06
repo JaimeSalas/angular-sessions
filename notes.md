@@ -45,3 +45,12 @@ ng new <project>
 ```bash
 ng g c <component name> -s -t --flat --skip-tests
 ```
+
+<pre>
+
+  <app-root> (M) >> PersonService
+    -<app-person>
+    -<app-female> >> PersonService -> FemaleService
+      -<app-person>
+      
+</pre>
