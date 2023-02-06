@@ -10,6 +10,7 @@ import { PersonComponent } from './person.component';
 import { LoggerService } from './services/logger.service';
 import { NewLoggerService } from './services/new-logger.service';
 import { WriterService } from './services/writer.service';
+import { FemaleComponent } from './female.component';
 
 // const simpleLogger = {
 //   log(msg: string) {
@@ -33,6 +34,7 @@ const loggerFactory = (writer: WriterService) => {
     ChildComponent,
     PersonEditComponent,
     PersonComponent,
+    FemaleComponent,
   ],
   imports: [BrowserModule],
   providers: [

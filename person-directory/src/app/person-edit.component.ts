@@ -22,7 +22,7 @@ export class PersonEditComponent implements OnInit {
   }
 
   setPerson(value: string) {
-    this.personService.setPersonName(value);
+    // this.personService.setPersonName(value);
   }
 }
 

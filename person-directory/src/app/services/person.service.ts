@@ -6,13 +6,14 @@ export class PersonService {
 
   getPerson() {
     return {
-      name: this.name
+      name: this.name,
+      age: 41
     };
   }
 
-  setPersonName(value: string) {
-    this.name = value;
-  }
+  // setPersonName(value: string) {
+  //   this.name = value;
+  // }
 }
 
 // reveal pattern

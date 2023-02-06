@@ -42,12 +42,6 @@ const dicc = {
 ng new <project>
 ```
 
-```
-echo "# angular-sessions" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:JaimeSalas/angular-sessions.git
-git push -u origin main
+```bash
+ng g c <component name> -s -t --flat --skip-tests
 ```
