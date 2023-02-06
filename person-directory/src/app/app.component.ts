@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
+import { loggerFactory, LoggerService } from './services/logger.service';
+
+/*
+<app-person></app-person>    
+
+<app-female></app-female>
+*/
+
+/*
+<app-people></app-people>
+*/
 
 @Component({
   selector: 'app-root',
   template: `
     <h2>App Component</h2>
-    <app-person></app-person>    
-    <app-female></app-female>
+    
+    <app-person></app-person>
   `,
-  styles: [``]
+  styles: [``],
+  // providers: [
+  //   { provide: LoggerService, useFactory: loggerFactory('AppComponent') }
+  // ]
 })
 export class AppComponent {
   childVisible = true;

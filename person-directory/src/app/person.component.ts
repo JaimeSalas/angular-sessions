@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoggerService } from './services/logger.service';
+import { Component, OnInit, Optional, SkipSelf, Host } from '@angular/core';
+import { loggerFactory, LoggerService } from './services/logger.service';
 import { PersonService } from './services/person.service';
 
 /*
@@ -9,27 +9,45 @@ import { PersonService } from './services/person.service';
 <button (click)="doLog()">Log to console</button>
 */
 
+/*
+<pre>
+  {{ person | json }}
+</pre>
+*/
+
 @Component({
   selector: 'app-person',
   template: `
-    <pre>
-      {{ person | json }}
-    </pre>
+  <div style="border:1px">
+    <p *ngIf="logger === null">No logger</p>
+    <button (click)="doLog()">write log</button>
+  </div>
   `,
   styles: [
+  ],
+  providers: [
+    // {
+    //   provide: LoggerService,
+    //   useFactory: loggerFactory('PersonComponent')
+    // }
   ]
 })
 export class PersonComponent implements OnInit {
   person: any;
 
-  constructor(private personService: PersonService) { }
+  // constructor(private personService: PersonService) { }
+  constructor(@Host() @Optional() public logger: LoggerService) { }
 
   ngOnInit(): void {
-    this.person = this.personService.getPerson();
+    // this.person = this.personService.getPerson();
   }
 
-  // doLog() {
-  //   this.logger.log('Message from component');
-  // }
+  doLog() {
+    if (this.logger) {
+      this.logger.log('Message from person component');
+    } else {
+      console.log('no logger available');
+    }
+  }
 
 }
