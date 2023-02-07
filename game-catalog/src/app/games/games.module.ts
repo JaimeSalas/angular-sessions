@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { GameService } from './game.service';
+import { SharedModule } from '../shared/shared.module';
+import { GameListComponent } from './game-list/game-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
+  declarations: [GameListComponent],
   imports: [
-    CommonModule
-  ]
+    SharedModule,
+    RouterModule.forChild([{ path: '', component: GameListComponent }]),
+  ],
+  providers: [GameService],
 })
-export class GamesModule { }
+export class GamesModule {}
