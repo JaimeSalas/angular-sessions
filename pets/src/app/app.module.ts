@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WelcomeComponent } from './welcome.component';
 import { PetsComponent } from './pets.component';
+import { PetsModule } from './pets/pets.module';
+// import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { PetsComponent } from './pets.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    PetsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
