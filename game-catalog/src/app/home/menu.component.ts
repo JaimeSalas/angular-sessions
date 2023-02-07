@@ -4,13 +4,19 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styles: [
-  ]
+    `
+      .nav-full-width {
+        width: 100%;
+      }
+
+      .nav-end {
+        margin-left: auto;
+      }
+    `,
+  ],
 })
 export class MenuComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
