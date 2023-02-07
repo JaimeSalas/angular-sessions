@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WelcomeComponent } from './welcome.component';
 import { PetsComponent } from './pets.component';
-
-// type myRoutes = string[]
 
 @NgModule({
   declarations: [
@@ -18,14 +17,12 @@ import { PetsComponent } from './pets.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: 'pets', component: PetsComponent },
-      { path: '**', component: PageNotFoundComponent }
-    ])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// Angular LOBA - medianas a grandes
+// d3.js

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { Component } from '@angular/core';
       <li>
         <a [routerLink]="['/pets']">Pets</a>
       </li>
+      <li (click)="logOut()">Log Out</li>
     </ul>
     <router-outlet></router-outlet>
   `,
@@ -23,4 +25,13 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private router: Router) {}
+ 
+  // ?entry1=value1&entry1=value1
+  logOut() {
+    this.router.navigate(['/welcome']);
+    // this.router.navigate('/welcome')
+    // this.router.navigateByUrl('/welcome')
+  }
+}
