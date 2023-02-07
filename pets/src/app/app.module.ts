@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WelcomeComponent } from './welcome.component';
-import { PetsComponent } from './pets.component';
 import { PetsModule } from './pets/pets.module';
 // import { RouterModule } from '@angular/router';
 
@@ -15,7 +14,6 @@ import { PetsModule } from './pets/pets.module';
     AppComponent,
     PageNotFoundComponent,
     WelcomeComponent,
-    PetsComponent
   ],
   imports: [
     BrowserModule,

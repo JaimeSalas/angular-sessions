@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WelcomeComponent } from './welcome.component';
-import { PetsComponent } from './pets.component';
+
 import { Routes, RouterModule } from '@angular/router';
 import { PetComponent } from './pets/pet.component';
 import { PetsToysComponent } from './pets/pets-toys.component';
+import { PetsComponent } from './pets/pets.component';
 
 // Root, Feature Modules, Shared Module, Core Module -> Localizaion, logger....
 
