@@ -20,7 +20,7 @@ export class ProductListAltComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.sub = this.productService.getProducts().subscribe({
+    this.sub = this.productService.products$.subscribe({
       next: (products) => (this.products = products),
       error: (error) => (this.errorMessage = error),
     });
