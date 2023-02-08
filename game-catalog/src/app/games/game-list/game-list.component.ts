@@ -8,6 +8,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { CriteriaComponent } from 'src/app/shared/criteria/criteria.component';
 import { GameModel } from '../game.model';
 import { GameService } from '../game.service';
 
@@ -16,62 +17,29 @@ import { GameService } from '../game.service';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css'],
 })
-export class GameListComponent implements OnInit, AfterViewInit {
-  listFilter!: string;
-  // private _listFilter!: string;
-
-  // get listFilter(): string {
-  //   return this._listFilter;
-  // }
-
-  // set listFilter(value: string) {
-  //   this._listFilter = value;
-  //   this.performFilter(value);
-  // }
-
+export class GameListComponent implements OnInit {
   showImage!: boolean;
 
   imageWidth = 50;
   imageMargin = 2;
 
-  @ViewChild('filterElement', { static: false })
-  filterElementRef!: ElementRef<HTMLInputElement>;
-  // @ViewChildren('filterElement, nameElement')
-  // inputElementRefs!: QueryList<ElementRef<HTMLInputElement>>;
-  @ViewChild(NgModel)
-  filterInput!: NgModel;
+  @ViewChild(CriteriaComponent) filterComponent!: CriteriaComponent;
+  parentListFilter = '';
 
   filteredGames!: GameModel[];
   games!: GameModel[];
-
-  // get / set
+  includeDetail = true;
 
   constructor(private gameService: GameService) {
-     // function() {} -> void 0 -> undefined
-    // console.log();
-  }
-
-  ngAfterViewInit(): void {
-    // console.log(this.filterElementRef);
-    // this.filterElementRef.nativeElement
-    this.filterElementRef.nativeElement.focus();
-    this.filterInput.valueChanges?.subscribe((val) => {
-      // console.log(val);
-      this.performFilter(val);
-    })
+     
   }
 
   ngOnInit(): void {
     this.gameService.getGames().subscribe((games: GameModel[]) => {
       this.games = games;
-      this.performFilter(this.listFilter);
+      this.performFilter(this.parentListFilter);
     });
   }
-
-  // onFilterChange(filter: string) {
-  //   this.listFilter = filter;
-  //   this.performFilter(this.listFilter);
-  // }
 
   toggleImage(): void {
     this.showImage = !this.showImage;
@@ -87,5 +55,9 @@ export class GameListComponent implements OnInit, AfterViewInit {
     } else {
       this.filteredGames = this.games;
     }
+  }
+
+  onValueChange(value: string): void {
+    this.performFilter(value);
   }
 }
