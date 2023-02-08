@@ -283,3 +283,54 @@ sub.unsubscribe();
 - **Subscription**
   - Repressenta la ejecución del Observable
   - `subscribe()` devuelve una **Subscription**
+
+## Combining 
+
+```
+---[45]-[50]-----------------------------|->
+
+------------[55]-----------------[80]----|->
+
+--[25]------------------[75]-------------|->
+
+combineLatest([obv1, obv2, obv3])
+
+--[50,55,25]-[50,55,75]-[50,80,75]-------|->
+```
+
+```
+---mist-silver-----------------pearl|------>
+
+------------blue-gray|--------------------->
+
+---------------------taupe|---------------->
+
+forkJoin([obv1, obv2, obv3])
+
+------------------------[pearl,gray,taupe]|>
+```
+
+```
+---A1-------A2-----------------A3-----|->
+
+-------S1--------------------------S2-|->
+
+--C1------------------C2--------------|->
+
+apple$.pipe(withLatestFrom(stick$, caramel$))
+
+-----------[A2,S1,C1]----[A3,S1,C2]---|->
+```
+
+## HOO
+
+[]
+
+```ts
+of(3, 7)
+    .pipe(
+        map(id => this.http.get<Supplier>(`${this.url}/${id}`))
+    ).subscribe(o =>
+        o.subscibe() // Subscribes to the inner observable
+    );
+```
