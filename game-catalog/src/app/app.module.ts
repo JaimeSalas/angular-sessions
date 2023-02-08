@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
 // Imports for in-memory web api
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,6 +15,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { ShellComponent } from './home/shell.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
 import { UserModule } from './user/user.module';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { UserModule } from './user/user.module';
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(GameData),
+    CoreModule,
     UserModule,
     AppRoutingModule,
   ],
