@@ -1,17 +1,17 @@
 ```c#
-class Address 
+class Address
 {
-    // 
+    //
 }
 
-class Person 
-{ 
-    // Person() 
+class Person
+{
+    // Person()
     // {
     //     var address = new Address();
     // }
     // props
-    Person(address) 
+    Person(address)
     {
 
     }
@@ -26,50 +26,49 @@ class Person
 
 ```html
 <ul class="carousel-container">
-    <!-- <ng-content></ng-content> -->
-    <ng-template appDynamicCarouselItemAnchor></ng-template>
+  <!-- <ng-content></ng-content> -->
+  <ng-template appDynamicCarouselItemAnchor></ng-template>
 </ul>
 ```
 
 ```ts
-import { Component, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, ComponentFactoryResolver } from "@angular/core";
 
-import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
-import { DynamicCarouselItemAnchorDirective } from '../dynamic-carousel-item-anchor.directive';
+import { CarouselItemComponent } from "../carousel-item/carousel-item.component";
+import { DynamicCarouselItemAnchorDirective } from "../dynamic-carousel-item-anchor.directive";
 
 @Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
+  selector: "app-carousel",
+  templateUrl: "./carousel.component.html",
+  styleUrls: ["./carousel.component.css"],
 })
 export class CarouselComponent {
-  @ViewChild(DynamicCarouselItemAnchorDirective) dynamicPlaceHolder!:
-  DynamicCarouselItemAnchorDirective;
+  @ViewChild(DynamicCarouselItemAnchorDirective)
+  dynamicPlaceHolder!: DynamicCarouselItemAnchorDirective;
   items: CarouselItemComponent[] = [];
 
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   addCarouselItem(template: any, data: any) {
-    const componentFactory = this.componentFactoryResolver
-      .resolveComponentFactory(CarouselItemComponent);
+    const componentFactory =
+      this.componentFactoryResolver.resolveComponentFactory(
+        CarouselItemComponent
+      );
     const viewContainerRef = this.dynamicPlaceHolder.viewContainer; // [2]
 
     const componentRef = viewContainerRef.createComponent(componentFactory); // [3]
-    const instance: CarouselItemComponent = componentRef.instance as CarouselItemComponent;
+    const instance: CarouselItemComponent =
+      componentRef.instance as CarouselItemComponent;
     instance.template = template; //[4]
     instance.dataContext = data;
     this.items.push(instance); // [5]
   }
-
 }
-
 ```
 
-* Building blocks de Angular - Módulos
-* App - 1 módulo - Root Module - app.module.ts
-* Injector - Dictionary
+- Building blocks de Angular - Módulos
+- App - 1 módulo - Root Module - app.module.ts
+- Injector - Dictionary
 
 ```ts
 const dicc = {
@@ -98,7 +97,7 @@ ng g c <component name> -s -t --flat --skip-tests
       
 </pre>
 
-## HTML 5 routes vs #
+## HTML 5 routes vs
 
 - nginx, apache....
 
@@ -116,9 +115,10 @@ ng g c <component name> -s -t --flat --skip-tests
   - Template -> HTML con bindings sin procesar por Angular
   - Comportamiento
 - {{}} - Evalua expresion de JS
-- () - Binding evento 
+- () - Binding evento
 - [] - Binding attributo
-- Servicios en Angular 
+- Servicios en Angular
+
   - 'singletons'
   - Jerarquizada y paralelizada
   - Técnicas para multiples instancias servicios
@@ -131,17 +131,17 @@ ng g c <component name> -s -t --flat --skip-tests
 ## State Management Service
 
 ```ts
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, map, catchError } from 'rxjs/operators';
-import { GameModel } from './game.model';
-import { HTTP_DATA_LOGGER } from '../core/http-data-logger.service';
-import { HTTP_ERROR_HANDLER } from '../core/http-error-handler.service';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable, Inject } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { tap, map, catchError } from "rxjs/operators";
+import { GameModel } from "./game.model";
+import { HTTP_DATA_LOGGER } from "../core/http-data-logger.service";
+import { HTTP_ERROR_HANDLER } from "../core/http-error-handler.service";
 
 @Injectable()
 export class GameService {
-  private gamesUrl = 'api/games';
+  private gamesUrl = "api/games";
   private games!: GameModel[];
 
   constructor(
@@ -181,12 +181,12 @@ export class GameService {
   }
 
   deleteGame(id: number): Observable<GameModel> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
     const url = `${this.gamesUrl}/${id}`;
     return this.http.delete<GameModel>(url, { headers: headers }).pipe(
       tap(this.logger.logJSON),
       tap((data) => {
-        const foundIndex = this.games.findIndex(i => i.id === id);
+        const foundIndex = this.games.findIndex((i) => i.id === id);
         if (foundIndex > -1) {
           this.games.splice(foundIndex, 1);
         }
@@ -196,7 +196,7 @@ export class GameService {
   }
 
   saveGame(game: GameModel): Observable<GameModel> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
     if (game.id === 0) {
       return this.createGame(game, headers);
     }
@@ -230,17 +230,56 @@ export class GameService {
   private initializeGame(): GameModel {
     return {
       id: 0,
-      name: '',
-      code: '',
-      category: '',
+      name: "",
+      code: "",
+      category: "",
       tags: [],
-      release: '',
+      release: "",
       price: 0,
-      description: '',
+      description: "",
       rating: 0,
-      imageUrl: '',
+      imageUrl: "",
     };
   }
 }
-
 ```
+
+Beer factory
+
+- arrancar la cinta / (rxjs) Subscribe
+- llenado, etiquetado... / (rxjs) `pipe` conjunto de operadores
+- como obeservador / (rxjs) Observer
+- parar la cinta / (rxjs) Unsubscribe
+
+- Observer
+  - next()
+  - error()
+  - complete()
+
+```ts
+const observer = {
+  next: (beer: any) => console.log(`Beer was emitted ${beer}`),
+  error: (error: any) => console.log(`Beer was emitted ${error}`),
+  complete: () => console.log(`No more beers, go home`),
+};
+
+const beerStream = new Observable((beerObserver) => {
+  beerObserver.next("Beer 1");
+  beerObserver.next("Beer 2");
+  beerObserver.complete();
+});
+
+const sub = beerStream.subscribe(observer);
+sub.unsubscribe();
+```
+
+- **Observable**
+  - Cualquier fuente de datos
+- **Observer**
+  - Observa la fuente de datos
+  - Funciones que procesan las notificaciones de la fuente de datos: `next()`, `error()`, `complete()`
+- **Subscriber**
+  - Un `Observer` que tiene `unsubscribe`
+- **Subscription**
+  - Repressenta la ejecución del Observable
+  - `subscribe()` devuelve una **Subscription**
