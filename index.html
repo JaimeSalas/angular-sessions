@@ -13,5 +13,28 @@
         // singleton
         // Multiples instancias
      </script>
+     <script>
+        const sendLog = console.log;
+        let amount = 100;
+        let rate = 4.0;
+        $: exchange = amount / rate;
+        $: sendLog(exchange);
+     </script>
+     <div>exchange: {exchange}</div>
+     <script>
+        // let div2, t6, t7, ...
+        // c() {
+        // ...
+        // div2 = element('div');
+        // t6 = text('exchange: ');
+        // t7 = text(/*exchange*/ ctx[2])
+        // },
+        // m(target, anchor) {
+        // ...
+        // append(div3, div2);
+        // append(div2, t6);
+        // append(div2, t7);
+        // }
+     </script>
 </body>
 </html>
