@@ -9,4 +9,7 @@ export class ReviewService {
   getReviewUrl(productId: number): string {
     return `${this.reviewsUrl}?productId=^${productId}$`;
   }
+
+  // api/reviews?productId=^1$
+  // HTTP - api/reviews?productId=^1$
 }
