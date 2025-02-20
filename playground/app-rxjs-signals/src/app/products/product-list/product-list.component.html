@@ -11,7 +11,7 @@
             type="button"
             class="list-group-item"
             *ngFor="let product of products"
-            [ngClass]="{ active: product.id === selectedProductId }"
+            [ngClass]="{ active: product.id === (selectedProductId$ | async) }"
             (click)="onSelected(product.id)"
           >
             {{ product.productName }}
@@ -25,6 +25,6 @@
   </div>
 
   <div class="col-md-8">
-    <app-product-detail [productId]="selectedProductId" />
+    <app-product-detail />
   </div>
 </div>

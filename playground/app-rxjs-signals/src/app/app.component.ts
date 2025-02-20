@@ -15,6 +15,12 @@ export class AppComponent implements OnInit {
   cartCount = 0;
 
   ngOnInit(): void {
+    // const x = { name: 'foo' };
+    // const y = 8
+    // const collection = [x, y];
+    // const [j, f] = collection;
+    
+
     // range(1, 5)
     //   .pipe(concatMap((i) => of(i)))
     //   .pipe(delay(this.randomDelay()))
