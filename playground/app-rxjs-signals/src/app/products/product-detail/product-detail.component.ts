@@ -1,30 +1,37 @@
-import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import {
-  Component,
-  inject,
-} from '@angular/core';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Product } from '../product';
-import { catchError, EMPTY } from 'rxjs';
 import { ProductService } from '../product.service';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [NgIf, NgFor, CurrencyPipe, AsyncPipe],
+  imports: [NgIf, NgFor, CurrencyPipe],
   templateUrl: './product-detail.component.html',
   styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent {
-  errorMessage = '';
-  pageTitle = 'Product Detail';
-
   private productService = inject(ProductService);
-  product$ = this.productService.product$.pipe(
-    catchError((err) => {
-      this.errorMessage = err;
-      return EMPTY;
-    })
+  private cartService = inject(CartService);
+
+  errorMessage = this.productService.productError;
+  pageTitle = computed(() =>
+    this.product()
+      ? `Product Detail for: ${this.product()?.productName}`
+      : 'Product Detail'
   );
 
-  addToCart(product: Product) {}
+  // product$ = this.productService.product$.pipe(
+  //   catchError((err) => {
+  //     this.errorMessage = err;
+  //     return EMPTY;
+  //   })
+  // );
+  product = this.productService.product;
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 }

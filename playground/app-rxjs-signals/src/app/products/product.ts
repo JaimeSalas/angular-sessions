@@ -11,3 +11,12 @@ export interface Product {
   hasReviews?: boolean;
   reviews?: Review[];
 }
+
+// export interface ProductResult {
+//   product: Product;
+//   error: string;
+// }
+export interface Result<T> {
+  data: T | undefined;
+  error?: string;
+}

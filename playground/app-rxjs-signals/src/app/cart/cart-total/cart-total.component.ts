@@ -1,5 +1,6 @@
 import { CurrencyPipe, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart-total',
@@ -9,10 +10,11 @@ import { Component } from '@angular/core';
   styles: ``,
 })
 export class CartTotalComponent {
-  cartItems = [];
+  cartService = inject(CartService);
+  cartItems = this.cartService.cartItems;
 
-  subTotal = 100;
-  deliveryFee = 20;
-  tax = 10;
-  totalPrice = this.subTotal + this.deliveryFee + this.tax;
+  subTotal = this.cartService.subTotal;
+  deliveryFee = this.cartService.deliveryFree;
+  tax = this.cartService.tax;
+  totalPrice = this.cartService.totalPrice;
 }
