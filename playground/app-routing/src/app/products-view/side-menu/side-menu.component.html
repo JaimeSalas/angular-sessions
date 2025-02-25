@@ -1,0 +1,12 @@
+<div class="side-nav" *ngIf="selectedDish$ | async as selectedDish">
+  <button
+    *ngFor="let dish of dishes$ | async"
+    class="image-button"
+    (click)="selectDish(+dish.id)"
+  >
+    <img
+      [src]="dish.thumb"
+      alt="image of person sticking a fork in a piece of dish"
+    />
+  </button>
+</div>

@@ -1,0 +1,13 @@
+<div class="detail" *ngIf="selectedDish$ | async as selectedDish">
+  <h3>{{ selectedDish.title }}</h3>
+  <div class="image-wrapper">
+    <img [src]="selectedDish.image" [alt]="selectedDish.title" />
+    <div class="description">
+      <p>{{ selectedDish.description }}</p>
+      <h4>Ingredients: <span class="ingredient" *ngFor="let ingredient of selectedDish.ingredients">{{ ingredient }}</span></h4>
+      <p class="price">Price: <span>{{ selectedDish.price }}</span></p>
+    </div>
+  </div>
+
+  <button mat-raised-button>Add To Cart</button>
+</div>

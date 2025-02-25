@@ -1,0 +1,13 @@
+<div class="button-row">
+  <button mat-button>Home</button>
+  <span>>></span>
+  <button mat-button>Shop</button>
+  <ng-container *ngIf="selectedCategory$ | async as selectedCategory">
+    <span>>></span>
+    <button mat-button>{{ selectedCategory }}</button>
+  </ng-container>
+  <ng-container *ngIf="selectedDish$ | async as selectedDish">
+    <span>>></span>
+    <button mat-button>{{ selectedDish.title }}</button>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+<div class="dish-item">
+  <ng-content select="[image]"></ng-content>
+  <div class="add-to-cart">
+    <button mat-button>Add to Cart</button>
+  </div>
+  <div class="dish-info">
+    <div>
+      <ng-content select="[title]"></ng-content>
+    </div>
+    <div>
+      <ng-content select="[price]"></ng-content>
+    </div>
+  </div>
+</div>
