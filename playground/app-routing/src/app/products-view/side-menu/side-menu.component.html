@@ -2,7 +2,7 @@
   <button
     *ngFor="let dish of dishes$ | async"
     class="image-button"
-    (click)="selectDish(+dish.id)"
+    (click)="selectDish(dish.id)"
   >
     <img
       [src]="dish.thumb"

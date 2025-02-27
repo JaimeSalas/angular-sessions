@@ -18,7 +18,7 @@ export class SideMenuComponent {
   dishes$ = this.dishService.filteredDishes$;
   selectedDish$ = this.dishService.selectedDish$;
 
-  selectDish(id: number){
+  selectDish(id: string){
     this.dishService.setSelectedDish(id);
   }
 }

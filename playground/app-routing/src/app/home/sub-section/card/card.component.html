@@ -1,14 +1,26 @@
 <div class="dish-item">
-  <ng-content select="[image]"></ng-content>
+  <!-- <ng-content select="[image]"></ng-content>
   <div class="add-to-cart">
     <button mat-button>Add to Cart</button>
+  </div> -->
+  <button (click)="selectDish(dish)">
+    <img [src]="dish.image" alt="Comfort Dish" />
+  </button>
+  <div class="quantity-selector">
+    <button>-</button>
+    <span>{{
+      dish.quantity ? dish.quantity + " in Cart" : "Add to Cart"
+    }}</span>
+    <button>+</button>
   </div>
   <div class="dish-info">
     <div>
-      <ng-content select="[title]"></ng-content>
+      <!-- <ng-content select="[title]"></ng-content> -->
+       <h4>{{ dish.title }}</h4>
     </div>
     <div>
-      <ng-content select="[price]"></ng-content>
+      <!-- <ng-content select="[price]"></ng-content> -->
+      <h4>{{ dish.price }}</h4>
     </div>
   </div>
 </div>

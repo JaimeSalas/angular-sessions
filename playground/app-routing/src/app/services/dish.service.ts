@@ -1,43 +1,69 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, of, switchMap, tap } from 'rxjs';
 import { Category, Dish } from '../models/dish';
 import { DISHES } from '../models/dish-data.mock';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DishService {
-  private readonly selectedCategory = new BehaviorSubject<Category>(Category.ALL);
-  private readonly selectedDish = new BehaviorSubject<number | undefined>(4);
-
   readonly dishes$ = of(DISHES);
+  private readonly selectedCategory = new BehaviorSubject<Category>(
+    Category.ALL
+  );
+  readonly dishesSignal = toSignal(this.dishes$, { initialValue: [] });
+
+
   readonly selectedCategory$ = this.selectedCategory.asObservable();
 
+  private readonly selectedDish = new BehaviorSubject<string | undefined>(undefined);
+
+  // private readonly activatedRoute = inject(ActivatedRoute);
+
+  // private readonly selectedDish = this.activatedRoute.queryParamMap.pipe(
+  //   map((params) => params.get('productId'))
+  // );
+
+  t = this.selectedCategory.subscribe(console.log);
+
   readonly filteredDishes$ = this.selectedCategory.pipe(
-    switchMap((category) => this.dishes$.pipe(
-      map((dishes) => {
-        if(category === Category.ALL) {
-          return dishes;
-        }
+    switchMap((category) =>
+      this.dishes$.pipe(
+        map((dishes) => {
+          if (category === Category.ALL) {
+            return dishes;
+          }
+          return dishes.filter((dish: Dish) => dish.category === category);
+        })
+      )
+    )
+  );
 
-        return dishes.filter((dish: Dish) => dish.category === category);
-      }),
-      tap((dishes) => this.setSelectedDish(+dishes[0].id))
-    ))
-  )
+  readonly feauredDishes$ = this.dishes$.pipe(
+    map((dishes) => [dishes[3], dishes[6], dishes[17]])
+  );
 
-  readonly selectedDish$ = this.selectedDish.pipe(switchMap((number) =>
-    this.dishes$.pipe(
-      map((dishes) => {
-        if(number){
-          return dishes.find((dish) => +dish.id === number);
-        }
+  readonly featuredDishesSignal = toSignal(this.feauredDishes$, {
+    initialValue: [],
+  });
 
-        return undefined;
-      })
-    )));
+  readonly selectedDish$ = this.selectedDish.pipe(
+    switchMap((number) =>
+      this.dishes$.pipe(
+        map((dishes) => {
+          if (number) {
+            return dishes.find((dish) => dish.id === number);
+          }
 
-  setSelectedDish(id: number) {
+          return undefined;
+        })
+      )
+    )
+  );
+
+  setSelectedDish(id: string) {
     this.selectedDish.next(id);
   }
 

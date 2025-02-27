@@ -1,6 +1,6 @@
 <section>
   <div class="dish-grid">
-    <app-card>
+    <!-- <app-card>
       <img image src="/vegetable-curry.avif" alt="Vegetable Curry" />
       <h4 title>Vegetable Curry</h4>
       <p price>$12.95</p>
@@ -14,6 +14,7 @@
       <img image src="/french-onion-mac-and-cheese.avif" alt="French Onion Mac & Cheese" />
       <h4 title>French Onion Mac & Cheese</h4>
       <p price>$18.95</p>
-    </app-card>
+    </app-card> -->
+    <app-card *ngFor="let dish of featuredProducts()" [dish]="dish"></app-card>
   </div>
 </section>

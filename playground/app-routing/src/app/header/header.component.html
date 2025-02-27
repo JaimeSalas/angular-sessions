@@ -1,26 +1,88 @@
 <header class="site-header">
   <div class="site-header-wrapper">
     <h1>
-      <button mat-menu-item><img style="max-width: 100px; max-height: 150px;" src="/logo.webp" alt="Adolfo's Dish Shop Logo" /></button>
+      <button [routerLink]="['/']" mat-menu-item>
+        <img
+          style="max-width: 100px; max-height: 150px"
+          src="/logo.webp"
+          alt="Adolfo's Dish Shop Logo"
+        />
+      </button>
     </h1>
     <nav>
       <ul>
         <li>
-          <button class="menu-item" mat-button [matMenuTriggerFor]="menu">Shop <span>&#8964;</span></button>
+          <button
+            ariaCurrentWhenActive="page"
+            routerLinkActive="active-link"
+            class="menu-item"
+            mat-button
+            [matMenuTriggerFor]="menu"
+          >
+            Shop <span>&#8964;</span>
+          </button>
           <mat-menu class="menu-dropdown" #menu="matMenu">
-            <button mat-menu-item (click)="changeCategory(Category.VEGAN)">Vegan dishes</button>
-            <button mat-menu-item (click)="changeCategory(Category.PASTA)">Pasta dishes</button>
-            <button mat-menu-item (click)="changeCategory(Category.MEET)">Meet dishes</button>
-            <button mat-menu-item (click)="changeCategory(Category.ALL)">All Dishes</button>
+            <button
+              mat-menu-item
+              [routerLink]="[ROUTER_TOKENS.SHOP, Category.VEGAN]"
+              routerLinkActive="active-link-li"
+            >
+              Vegan dishes
+            </button>
+            <button
+              mat-menu-item
+              [routerLink]="[ROUTER_TOKENS.SHOP, Category.PASTA]"
+              routerLinkActive="active-link-li"
+            >
+              Pasta dishes
+            </button>
+            <button
+              mat-menu-item
+              [routerLink]="[ROUTER_TOKENS.SHOP, Category.MEET]"
+              routerLinkActive="active-link-li"
+            >
+              Meet dishes
+            </button>
+            <button
+              mat-menu-item
+              [routerLink]="[ROUTER_TOKENS.SHOP, Category.ALL]"
+              routerLinkActive="active-link-li"
+            >
+              All Dishes
+            </button>
           </mat-menu>
         </li>
-        <li><button class="menu-item" mat-button>Contact</button></li>
-        <li><button class="menu-item" mat-button>About</button></li>
+        <li>
+          <button
+            [routerLink]="[ROUTER_TOKENS.CONCAT]"
+            routerLinkActive="active-link"
+            ariaCurrentWhenActive="page"
+            class="menu-item"
+            mat-button
+          >
+            Contact
+          </button>
+        </li>
+        <li>
+          <button
+            [routerLink]="[ROUTER_TOKENS.ABOUT]"
+            routerLinkActive="active-link"
+            ariaCurrentWhenActive="page"
+            class="menu-item"
+            mat-button
+          >
+            About
+          </button>
+        </li>
       </ul>
     </nav>
     <div class="header-icons">
       <ul>
-        <li><button mat-menu-item><img src="/cart-icon.png" alt="shopping cart icon" /></button></li>
+        <li>
+          <button mat-menu-item>
+            <img src="/cart-icon.png" alt="shopping cart icon" />
+          </button>
+        </li>
       </ul>
     </div>
   </div>
