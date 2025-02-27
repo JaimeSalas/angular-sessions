@@ -39,3 +39,27 @@ e = effect(() => console.log(this.s()));
 
 - `toObservable(Signal<T>)`
 - Async, does not emit until the signal is stable
+
+## Web Core Vitals
+
+- LCP 
+  - `img`
+  - `image` - `svg`
+  - `url()`
+  - Nodes text
+
+
+- CLS 
+- INP
+
+### MITIGATIONS
+
+- Bundle size
+- CDN
+- SSR
+
+
+## References
+
+- https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md
+- https://github.com/manfredsteyer/module-federation-plugin-example/blob/nf-standalone-solution/package.json

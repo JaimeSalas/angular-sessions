@@ -3,8 +3,12 @@
     <div class="carousel-image"><img src="../../assets/images/baking-pie.jpg" alt="pie being prepared" /></div>
   </div>
 
-  <app-sub-hero-logo>
-    <ng-container title>Oops! That pie isn't ready yet!</ng-container>
-    <ng-container sub-title>Check the link and try again</ng-container>
-  </app-sub-hero-logo>
+  @defer {
+    <app-sub-hero-logo>
+      <ng-container title>Oops! That pie isn't ready yet!</ng-container>
+      <ng-container sub-title>Check the link and try again</ng-container>
+    </app-sub-hero-logo>
+  } @placeholder {
+    <h3>Foo</h3>
+  }
 </section>

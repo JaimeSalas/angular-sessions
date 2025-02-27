@@ -32,11 +32,16 @@ export const routes: Routes = [
   },
   {
     path: ROUTER_TOKENS.CONCAT,
-    component: ContactComponent
+    // component: ContactComponent
+    // loadComponent: () => ContactComponent,
+    loadComponent: () =>
+      import('./contact/contact.component').then((m) => m.ContactComponent),
   },
   {
     path: ROUTER_TOKENS.ABOUT,
-    component: AboutComponent
+    // component: AboutComponent
+    loadComponent: () =>
+      import('./about/about.component').then((m) => m.AboutComponent),
   },
   {
     path: '**',
